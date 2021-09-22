@@ -166,6 +166,126 @@
         </elementProp>
       </kg.apc.jmeter.threads.SteppingThreadGroup>
       <hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="user_info" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&quot;age&quot;:20,&quot;salary&quot;:500,&quot;name&quot;:&quot;vasya&quot;, &quot;auth_token&quot;:&quot;${token}&quot;}&#xd;
+</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">162.55.220.72</stringProp>
+          <stringProp name="HTTPSampler.port">5005</stringProp>
+          <stringProp name="HTTPSampler.protocol">http</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/user_info</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">content-type</stringProp>
+                <stringProp name="Header.value">application/json; charset=utf-8</stringProp>
+              </elementProp>
+            </collectionProp>
+            <stringProp name="TestPlan.comments">add json</stringProp>
+          </HeaderManager>
+          <hashTree/>
+          <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="BeanShell PreProcessor" enabled="true">
+            <boolProp name="resetInterpreter">false</boolProp>
+            <stringProp name="parameters"></stringProp>
+            <stringProp name="filename"></stringProp>
+            <stringProp name="script">String auth_token = props.get(&quot;token&quot;);
+vars.put(&quot;token&quot;, auth_token);</stringProp>
+          </BeanShellPreProcessor>
+          <hashTree/>
+          <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+            <boolProp name="ResultCollector.error_logging">false</boolProp>
+            <objProp>
+              <name>saveConfig</name>
+              <value class="SampleSaveConfiguration">
+                <time>true</time>
+                <latency>true</latency>
+                <timestamp>true</timestamp>
+                <success>true</success>
+                <label>true</label>
+                <code>true</code>
+                <message>true</message>
+                <threadName>true</threadName>
+                <dataType>true</dataType>
+                <encoding>false</encoding>
+                <assertions>true</assertions>
+                <subresults>true</subresults>
+                <responseData>false</responseData>
+                <samplerData>false</samplerData>
+                <xml>false</xml>
+                <fieldNames>true</fieldNames>
+                <responseHeaders>false</responseHeaders>
+                <requestHeaders>false</requestHeaders>
+                <responseDataOnError>false</responseDataOnError>
+                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                <assertionsResultsToSave>0</assertionsResultsToSave>
+                <bytes>true</bytes>
+                <sentBytes>true</sentBytes>
+                <url>true</url>
+                <threadCounts>true</threadCounts>
+                <idleTime>true</idleTime>
+                <connectTime>true</connectTime>
+              </value>
+            </objProp>
+            <stringProp name="filename"></stringProp>
+          </ResultCollector>
+          <hashTree/>
+          <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report" enabled="true">
+            <boolProp name="ResultCollector.error_logging">false</boolProp>
+            <objProp>
+              <name>saveConfig</name>
+              <value class="SampleSaveConfiguration">
+                <time>true</time>
+                <latency>true</latency>
+                <timestamp>true</timestamp>
+                <success>true</success>
+                <label>true</label>
+                <code>true</code>
+                <message>true</message>
+                <threadName>true</threadName>
+                <dataType>true</dataType>
+                <encoding>false</encoding>
+                <assertions>true</assertions>
+                <subresults>true</subresults>
+                <responseData>false</responseData>
+                <samplerData>false</samplerData>
+                <xml>false</xml>
+                <fieldNames>true</fieldNames>
+                <responseHeaders>false</responseHeaders>
+                <requestHeaders>false</requestHeaders>
+                <responseDataOnError>false</responseDataOnError>
+                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                <assertionsResultsToSave>0</assertionsResultsToSave>
+                <bytes>true</bytes>
+                <sentBytes>true</sentBytes>
+                <url>true</url>
+                <threadCounts>true</threadCounts>
+                <idleTime>true</idleTime>
+                <connectTime>true</connectTime>
+              </value>
+            </objProp>
+            <stringProp name="filename"></stringProp>
+          </ResultCollector>
+          <hashTree/>
+        </hashTree>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="new_data" enabled="true">
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
             <collectionProp name="Arguments.arguments">
@@ -178,7 +298,7 @@
               </elementProp>
               <elementProp name="name" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                <stringProp name="Argument.value">${name}</stringProp>
+                <stringProp name="Argument.value">vasya</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 <stringProp name="Argument.name">name</stringProp>
@@ -220,14 +340,6 @@
             <boolProp name="resetInterpreter">false</boolProp>
             <stringProp name="script">String auth_token = props.get(&quot;token&quot;);
 vars.put(&quot;token&quot;, auth_token);</stringProp>
-          </BeanShellPreProcessor>
-          <hashTree/>
-          <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="BeanShell PreProcessor" enabled="true">
-            <boolProp name="resetInterpreter">false</boolProp>
-            <stringProp name="parameters"></stringProp>
-            <stringProp name="filename"></stringProp>
-            <stringProp name="script">String name = props.get(&quot;name&quot;);
-vars.put(&quot;name&quot;, name);</stringProp>
           </BeanShellPreProcessor>
           <hashTree/>
           <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
@@ -312,7 +424,7 @@ vars.put(&quot;name&quot;, name);</stringProp>
           </JSONPostProcessor>
           <hashTree/>
           <BeanShellAssertion guiclass="BeanShellAssertionGui" testclass="BeanShellAssertion" testname="BeanShell Assertion" enabled="true">
-            <stringProp name="BeanShellAssertion.query">${__setProperty(vasya,${name})}</stringProp>
+            <stringProp name="BeanShellAssertion.query">${__setProperty(name,${name})}</stringProp>
             <stringProp name="BeanShellAssertion.filename"></stringProp>
             <stringProp name="BeanShellAssertion.parameters"></stringProp>
             <boolProp name="BeanShellAssertion.resetInterpreter">false</boolProp>
@@ -517,252 +629,6 @@ vars.put(&quot;token&quot;, auth_token);</stringProp>
             <stringProp name="filename"></stringProp>
             <stringProp name="script">String age = props.get(&quot;age&quot;);
 vars.put(&quot;age&quot;, age);</stringProp>
-          </BeanShellPreProcessor>
-          <hashTree/>
-          <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
-            <boolProp name="ResultCollector.error_logging">false</boolProp>
-            <objProp>
-              <name>saveConfig</name>
-              <value class="SampleSaveConfiguration">
-                <time>true</time>
-                <latency>true</latency>
-                <timestamp>true</timestamp>
-                <success>true</success>
-                <label>true</label>
-                <code>true</code>
-                <message>true</message>
-                <threadName>true</threadName>
-                <dataType>true</dataType>
-                <encoding>false</encoding>
-                <assertions>true</assertions>
-                <subresults>true</subresults>
-                <responseData>false</responseData>
-                <samplerData>false</samplerData>
-                <xml>false</xml>
-                <fieldNames>true</fieldNames>
-                <responseHeaders>false</responseHeaders>
-                <requestHeaders>false</requestHeaders>
-                <responseDataOnError>false</responseDataOnError>
-                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
-                <assertionsResultsToSave>0</assertionsResultsToSave>
-                <bytes>true</bytes>
-                <sentBytes>true</sentBytes>
-                <url>true</url>
-                <threadCounts>true</threadCounts>
-                <idleTime>true</idleTime>
-                <connectTime>true</connectTime>
-              </value>
-            </objProp>
-            <stringProp name="filename"></stringProp>
-          </ResultCollector>
-          <hashTree/>
-          <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report" enabled="true">
-            <boolProp name="ResultCollector.error_logging">false</boolProp>
-            <objProp>
-              <name>saveConfig</name>
-              <value class="SampleSaveConfiguration">
-                <time>true</time>
-                <latency>true</latency>
-                <timestamp>true</timestamp>
-                <success>true</success>
-                <label>true</label>
-                <code>true</code>
-                <message>true</message>
-                <threadName>true</threadName>
-                <dataType>true</dataType>
-                <encoding>false</encoding>
-                <assertions>true</assertions>
-                <subresults>true</subresults>
-                <responseData>false</responseData>
-                <samplerData>false</samplerData>
-                <xml>false</xml>
-                <fieldNames>true</fieldNames>
-                <responseHeaders>false</responseHeaders>
-                <requestHeaders>false</requestHeaders>
-                <responseDataOnError>false</responseDataOnError>
-                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
-                <assertionsResultsToSave>0</assertionsResultsToSave>
-                <bytes>true</bytes>
-                <sentBytes>true</sentBytes>
-                <url>true</url>
-                <threadCounts>true</threadCounts>
-                <idleTime>true</idleTime>
-                <connectTime>true</connectTime>
-              </value>
-            </objProp>
-            <stringProp name="filename"></stringProp>
-          </ResultCollector>
-          <hashTree/>
-        </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="HTTP Request" enabled="true">
-          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
-          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
-            <collectionProp name="Arguments.arguments">
-              <elementProp name="" elementType="HTTPArgument">
-                <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                <stringProp name="Argument.value">{&#xd;
-	&quot;age&quot;:20,&#xd;
-	&quot;salary&quot;:500,&#xd;
-	&quot;name&quot;:&quot;vasya&quot;&#xd;
-	&quot;auth_token&quot;:&quot;${token}&quot;&#xd;
-}&#xd;
-</stringProp>
-                <stringProp name="Argument.metadata">=</stringProp>
-              </elementProp>
-            </collectionProp>
-          </elementProp>
-          <stringProp name="HTTPSampler.domain">162.55.220.72</stringProp>
-          <stringProp name="HTTPSampler.port">5005</stringProp>
-          <stringProp name="HTTPSampler.protocol">http</stringProp>
-          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-          <stringProp name="HTTPSampler.path">/user_info</stringProp>
-          <stringProp name="HTTPSampler.method">POST</stringProp>
-          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
-          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-          <boolProp name="HTTPSampler.DO_MULTIPART_POST">true</boolProp>
-          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
-          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-          <stringProp name="HTTPSampler.response_timeout"></stringProp>
-        </HTTPSamplerProxy>
-        <hashTree>
-          <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="BeanShell PreProcessor" enabled="true">
-            <boolProp name="resetInterpreter">false</boolProp>
-            <stringProp name="parameters"></stringProp>
-            <stringProp name="filename"></stringProp>
-            <stringProp name="script">String auth_token = props.get(&quot;token&quot;);
-vars.put(&quot;token&quot;, auth_token);</stringProp>
-          </BeanShellPreProcessor>
-          <hashTree/>
-          <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
-            <boolProp name="ResultCollector.error_logging">false</boolProp>
-            <objProp>
-              <name>saveConfig</name>
-              <value class="SampleSaveConfiguration">
-                <time>true</time>
-                <latency>true</latency>
-                <timestamp>true</timestamp>
-                <success>true</success>
-                <label>true</label>
-                <code>true</code>
-                <message>true</message>
-                <threadName>true</threadName>
-                <dataType>true</dataType>
-                <encoding>false</encoding>
-                <assertions>true</assertions>
-                <subresults>true</subresults>
-                <responseData>false</responseData>
-                <samplerData>false</samplerData>
-                <xml>false</xml>
-                <fieldNames>true</fieldNames>
-                <responseHeaders>false</responseHeaders>
-                <requestHeaders>false</requestHeaders>
-                <responseDataOnError>false</responseDataOnError>
-                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
-                <assertionsResultsToSave>0</assertionsResultsToSave>
-                <bytes>true</bytes>
-                <sentBytes>true</sentBytes>
-                <url>true</url>
-                <threadCounts>true</threadCounts>
-                <idleTime>true</idleTime>
-                <connectTime>true</connectTime>
-              </value>
-            </objProp>
-            <stringProp name="filename"></stringProp>
-          </ResultCollector>
-          <hashTree/>
-          <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report" enabled="true">
-            <boolProp name="ResultCollector.error_logging">false</boolProp>
-            <objProp>
-              <name>saveConfig</name>
-              <value class="SampleSaveConfiguration">
-                <time>true</time>
-                <latency>true</latency>
-                <timestamp>true</timestamp>
-                <success>true</success>
-                <label>true</label>
-                <code>true</code>
-                <message>true</message>
-                <threadName>true</threadName>
-                <dataType>true</dataType>
-                <encoding>false</encoding>
-                <assertions>true</assertions>
-                <subresults>true</subresults>
-                <responseData>false</responseData>
-                <samplerData>false</samplerData>
-                <xml>false</xml>
-                <fieldNames>true</fieldNames>
-                <responseHeaders>false</responseHeaders>
-                <requestHeaders>false</requestHeaders>
-                <responseDataOnError>false</responseDataOnError>
-                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
-                <assertionsResultsToSave>0</assertionsResultsToSave>
-                <bytes>true</bytes>
-                <sentBytes>true</sentBytes>
-                <url>true</url>
-                <threadCounts>true</threadCounts>
-                <idleTime>true</idleTime>
-                <connectTime>true</connectTime>
-              </value>
-            </objProp>
-            <stringProp name="filename"></stringProp>
-          </ResultCollector>
-          <hashTree/>
-        </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="HTTP Request" enabled="true">
-          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
-            <collectionProp name="Arguments.arguments">
-              <elementProp name="auth_token" elementType="HTTPArgument">
-                <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                <stringProp name="Argument.value">${token}</stringProp>
-                <stringProp name="Argument.metadata">=</stringProp>
-                <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                <stringProp name="Argument.name">auth_token</stringProp>
-              </elementProp>
-              <elementProp name="name" elementType="HTTPArgument">
-                <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                <stringProp name="Argument.value">${name}</stringProp>
-                <stringProp name="Argument.metadata">=</stringProp>
-                <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                <stringProp name="Argument.name">name</stringProp>
-              </elementProp>
-              <elementProp name="age" elementType="HTTPArgument">
-                <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                <stringProp name="Argument.value">30</stringProp>
-                <stringProp name="Argument.metadata">=</stringProp>
-                <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                <stringProp name="Argument.name">age</stringProp>
-              </elementProp>
-              <elementProp name="salary" elementType="HTTPArgument">
-                <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                <stringProp name="Argument.value">500</stringProp>
-                <stringProp name="Argument.metadata">=</stringProp>
-                <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                <stringProp name="Argument.name">salary</stringProp>
-              </elementProp>
-            </collectionProp>
-          </elementProp>
-          <stringProp name="HTTPSampler.domain">162.55.220.72</stringProp>
-          <stringProp name="HTTPSampler.port">5005</stringProp>
-          <stringProp name="HTTPSampler.protocol">http</stringProp>
-          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-          <stringProp name="HTTPSampler.path">/new_data</stringProp>
-          <stringProp name="HTTPSampler.method">POST</stringProp>
-          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
-          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
-          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-          <stringProp name="HTTPSampler.response_timeout"></stringProp>
-        </HTTPSamplerProxy>
-        <hashTree>
-          <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="BeanShell PreProcessor" enabled="true">
-            <boolProp name="resetInterpreter">false</boolProp>
-            <stringProp name="parameters"></stringProp>
-            <stringProp name="filename"></stringProp>
-            <stringProp name="script">String name = props.get(&quot;name&quot;);
-vars.put(&quot;name&quot;, name);</stringProp>
           </BeanShellPreProcessor>
           <hashTree/>
           <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
